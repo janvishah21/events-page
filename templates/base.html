@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Events Page</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/descrambler.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/canvas.js' %}"></script>
+
+		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+		<link rel="stylesheet" href="{% static 'css/preloader.css' %}">
+		<link rel="stylesheet" href="{% static 'css/spinkit.min.css' %}">
+		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css">
+		<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js" integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA=" crossorigin="anonymous"></script>
+
+		<!-- Tempus Dominus Bootstrap 4 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
+
+
+
+	</head>
+	<body>
+		<!-- <div class="preloader">
+			<div class="box_hill">
+				<div id="box"></div>
+				<div id="hill"></div>
+			</div>
+		</div> -->
+		
+		{% include 'navbar.html' %}
+
+		{% block content %}
+		{% endblock %}
+		
+		<div class="footer">
+			<table>
+				<tr>
+					<td></td>
+					<td><a href="https://github.com/janvishah21/events-page" target="_blank"><img src="{% static 'img/github.png' %}" class="gitlogo"></a></td>
+					<td>developed by Janvi Milan Shah</td>
+				</tr>
+			</table>
+	    </div>
+
+	    <script type="text/javascript">
+			$(window).load(function() {
+				$(".preloader").delay(2000).fadeOut(1000);
+				$(".gitlogo").delay(4000).animate({width: 'toggle', opacity: '0.9'}, 'slow');
+			});
+		</script>
+	</body>
+</html>
