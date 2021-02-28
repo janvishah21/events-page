@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+	<div class="container">
+		<h1>Events</h1>
+		<hr>
+		<div class="table-container">
+			{% if events.count == 0 %}
+				<div class="no-records-label">
+					NO EVENTS FOUND
+				</div>
+			{% else %}
+				<table class="event-table">
+					{% for event in events %}
+						<tr>
+							<td class="event-image">
+								{% if event.image %}
+							        <img src="{{ event.image.url }}">
+							    {% else %}
+							        <!-- <img src="{% static 'images/login-avatar.PNG' %}"> -->
+							        NO IMAGE
+							    {% endif %}
+							</td>
+							<td class="event-details">
+								<div class="event-name">{{ event.name }}</div>
+								<div>{{ event.date }} {{ event.time }}</div>
+								<div>{{ event.location }}</div>
+								<div class="like-container">
+									{% if event.is_liked %}
+										<i class="fas fa-heart" style="color: red;"></i>
+									{% else %}
+										<i class="fas fa-heart"></i>
+									{% endif %}
+								</div>
+							</td>
+						</tr>
+					{% endfor %}
+				</table>
+			{% endif %}
+		</div>
+	</div>
+    <script type="text/javascript">
+		$(document).ready(function(){
+			$(".footer td:nth-of-type(3)").delay(10000).addClass('scramble_text');
+		})
+	</script>
+{% endblock %}
