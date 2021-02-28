@@ -31,11 +31,13 @@
 								<div>{{ event.date }} {{ event.time|time:"h:i A" }}</div>
 								<div>{{ event.location }}</div>
 								<div class="like-container">
-									{% if event.is_liked %}
-										<i class="fas fa-heart liked-logo" ></i>
-									{% else %}
-										<i class="far fa-heart unliked-logo"></i>
-									{% endif %}
+									<a href="{% url 'event:toggle' event.pk %}">
+										{% if event.is_liked %}
+											<i class="fas fa-heart liked-logo" ></i>
+										{% else %}
+											<i class="far fa-heart unliked-logo"></i>
+										{% endif %}
+									</a>
 								</div>
 							</td>
 						</tr>

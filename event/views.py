@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Event
 from .forms import CreateEventForm
 from django.conf import settings
@@ -7,6 +7,13 @@ from django.conf import settings
 def home(request):
 	events = Event.objects.all()
 	return render(request, 'event/event-list.html', { 'events' : events, 'liked' : False })
+
+def toggle(request, pk):
+	event = get_object_or_404(Event, pk=pk)
+	event.is_liked = not event.is_liked
+	event.save()
+
+	return redirect('event:home')
 
 def liked(request):
 	events = Event.objects.filter(is_liked=True)
@@ -29,5 +36,6 @@ def create(request):
 			event.time = create_form.cleaned_data['time'].time()
 			# upload_file(request.FILES['image'])
 			event.save()
+			return redirect('event:home')
 
 	return render(request, 'event/create-event.html', { 'create_form' : create_form })
