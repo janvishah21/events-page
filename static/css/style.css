@@ -71,6 +71,7 @@ input[type=file]{
 
 .event-table .event-image {
 	width: 360px;
+	margin: 10px 0;
 }
 
 .event-table .event-details {

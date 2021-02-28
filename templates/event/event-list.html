@@ -3,7 +3,12 @@
 
 {% block content %}
 	<div class="container">
-		<h1>Events</h1>
+		<h1>
+			{% if liked %}
+				Liked
+			{% endif %}
+			Events
+		</h1>
 		<hr>
 		<div>
 			{% if events.count == 0 %}

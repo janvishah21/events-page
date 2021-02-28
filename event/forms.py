@@ -8,5 +8,5 @@ class CreateEventForm(forms.Form):
         input_formats=['%d/%m/%Y %H:%M'],
         widget=DateTimePickerInput()
     )
-    location = forms.CharField(label='Event Location', max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Event Location'}))
+    location = forms.CharField(label='Event Location', max_length=30, widget=forms.TextInput(attrs={'class': 'form-control'}))
     image = forms.FileField(label='Event Image', required=False)
