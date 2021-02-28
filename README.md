@@ -1,3 +1,3 @@
-An events application using Django Framework where user can add any number of events to be occured. For adding new events, user needs to register/login first. For every event, name, date, time, location, image can be specified. Users can like or unlike the event by clicking on the heart symbol. Users can also know the liked events by navigating to the 'liked events' tab.
+An events application using Django Framework where user can add any number of events to be occured. For every event, name, date, time, location, image can be specified. Users can like or unlike the event. Users can also know the liked events by navigating to the 'liked events' tab.
 
 ![Alt Text](Screenshot.png)
