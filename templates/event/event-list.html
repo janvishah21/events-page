@@ -5,7 +5,7 @@
 	<div class="container">
 		<h1>Events</h1>
 		<hr>
-		<div class="table-container">
+		<div>
 			{% if events.count == 0 %}
 				<div class="no-records-label">
 					NO EVENTS FOUND
@@ -18,19 +18,18 @@
 								{% if event.image %}
 							        <img src="{{ event.image.url }}">
 							    {% else %}
-							        <!-- <img src="{% static 'images/login-avatar.PNG' %}"> -->
-							        NO IMAGE
+							        <img src="{% static 'img/event_default.jpg' %}">
 							    {% endif %}
 							</td>
 							<td class="event-details">
 								<div class="event-name">{{ event.name }}</div>
-								<div>{{ event.date }} {{ event.time }}</div>
+								<div>{{ event.date }} {{ event.time|time:"h:i A" }}</div>
 								<div>{{ event.location }}</div>
 								<div class="like-container">
 									{% if event.is_liked %}
-										<i class="fas fa-heart" style="color: red;"></i>
+										<i class="fas fa-heart liked-logo" ></i>
 									{% else %}
-										<i class="fas fa-heart"></i>
+										<i class="far fa-heart unliked-logo"></i>
 									{% endif %}
 								</div>
 							</td>
