@@ -70,13 +70,16 @@ input[type=file]{
 	width: 100%;
 }
 
+.event-table tr {
+	margin: 20px;
+}
+
 .event-table td {
 	height: 100%;
 }
 
 .event-table .event-image {
 	width: 360px;
-	margin: 10px 0;
 }
 
 .event-table .event-details {

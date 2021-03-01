@@ -10,7 +10,7 @@ def home(request, liked):
 	events = Event.objects.all()
 	event_list = []
 	for event in events:
-		event_list.append({'event' : event, 'liked' : len(request.user.likes.filter(event=event)) == 0})
+		event_list.append({'event' : event, 'liked' : len(request.user.likes.filter(event=event)) != 0})
 	print(event_list)
 	return render(request, 'event/event-list.html', {'events' : event_list, 'liked' : liked})
 

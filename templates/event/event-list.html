@@ -16,7 +16,7 @@
 					{% if not liked or liked and event.liked %}
 						<tr>
 							<td class="event-image">
-								{% if event.image %}
+								{% if event.event.image %}
 							        <img src="{{ event.event.image.url }}">
 							    {% else %}
 							        <img src="{% static 'img/event_default.jpg' %}">
