@@ -1,23 +1,36 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Event
+from .models import Event, Like
 from .forms import CreateEventForm
 from django.conf import settings
 
 # Create your views here.
-def home(request):
+def home(request, liked):
+	if not request.user.is_authenticated:
+		return redirect('user:signin')
 	events = Event.objects.all()
-	return render(request, 'event/event-list.html', { 'events' : events, 'liked' : False })
+	event_list = []
+	for event in events:
+		event_list.append({'event' : event, 'liked' : len(request.user.likes.filter(event=event)) == 0})
+	print(event_list)
+	return render(request, 'event/event-list.html', {'events' : event_list, 'liked' : liked})
 
-def toggle(request, pk):
+def toggle(request, pk, liked):
 	event = get_object_or_404(Event, pk=pk)
-	event.is_liked = not event.is_liked
-	event.save()
+	likes = request.user.likes.filter(event=event)
+	if len(likes):
+		like = likes[0]
+		like.delete()
+	else:
+		like = Like()
+		like.user = request.user
+		like.event = event
+		like.save()
 
-	return redirect('event:home')
-
-def liked(request):
-	events = Event.objects.filter(is_liked=True)
-	return render(request, 'event/event-list.html', { 'events' : events, 'liked' : True })
+	if liked:
+		return redirect('event:liked')
+	else:
+		return redirect('event:home')
+	
 
 def upload_file(f):
     with open(settings.MEDIA_URL + 'event/event-img' + str(f._get_name()), 'wb') as destination:

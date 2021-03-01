@@ -11,39 +11,45 @@
 		</h1>
 		<hr>
 		<div>
-			{% if events.count == 0 %}
-				<div class="no-records-label">
-					NO EVENTS FOUND
-				</div>
-			{% else %}
-				<table class="event-table">
-					{% for event in events %}
+			<table class="event-table">
+				{% for event in events %}
+					{% if not liked or liked and event.liked %}
 						<tr>
 							<td class="event-image">
 								{% if event.image %}
-							        <img src="{{ event.image.url }}">
+							        <img src="{{ event.event.image.url }}">
 							    {% else %}
 							        <img src="{% static 'img/event_default.jpg' %}">
 							    {% endif %}
 							</td>
 							<td class="event-details">
-								<div class="event-name">{{ event.name }}</div>
-								<div>{{ event.date }} {{ event.time|time:"h:i A" }}</div>
-								<div>{{ event.location }}</div>
+								<div class="event-name">{{ event.event.name }}</div>
+								<div>{{ event.event.date }} {{ event.event.time|time:"h:i A" }}</div>
+								<div>{{ event.event.location }}</div>
 								<div class="like-container">
-									<a href="{% url 'event:toggle' event.pk %}">
-										{% if event.is_liked %}
-											<i class="fas fa-heart liked-logo" ></i>
-										{% else %}
-											<i class="far fa-heart unliked-logo"></i>
-										{% endif %}
-									</a>
+									{% if liked %}
+										<a href="{% url 'event:toggle' event.event.pk 1 %}">
+											{% if event.liked %}
+												<i class="fas fa-heart liked-logo" ></i>
+											{% else %}
+												<i class="far fa-heart unliked-logo"></i>
+											{% endif %}
+										</a>
+									{% else %}
+										<a href="{% url 'event:toggle' event.event.pk 0 %}">
+											{% if event.liked %}
+												<i class="fas fa-heart liked-logo" ></i>
+											{% else %}
+												<i class="far fa-heart unliked-logo"></i>
+											{% endif %}
+										</a>
+									{% endif %}
 								</div>
 							</td>
 						</tr>
-					{% endfor %}
-				</table>
-			{% endif %}
+					{% endif %}
+				{% endfor %}
+			</table>
 		</div>
 	</div>
     <script type="text/javascript">

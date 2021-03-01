@@ -42,11 +42,16 @@ a:hover{
 	margin: 0 5px;
 }
 
+.login-form a {
+	text-decoration: none;
+	color: white;
+}
+
 input[type=file]{
 	text-align: right;
 	border: 5px;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 18px;
 	opacity: .9;
 }
 

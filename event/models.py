@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 class Event(models.Model):
@@ -7,7 +8,17 @@ class Event(models.Model):
 	time = models.TimeField()
 	location = models.CharField(max_length=30)
 	image = models.ImageField(upload_to="event/event-img", blank=True)
-	is_liked = models.BooleanField(default=False)
 
 	def __str__(self):
 		return self.name
+
+class Like(models.Model):
+	event = models.ForeignKey(Event, related_name='likes', on_delete=models.CASCADE)
+	user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='likes', on_delete=models.CASCADE)
+
+	def __str__(self):
+		return self.user.username + '-' + self.event.name
+
+	class Meta:
+		unique_together = ['event', 'user']
+    

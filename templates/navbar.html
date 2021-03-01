@@ -11,18 +11,36 @@
             </li>
         </ul>
         <div class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'event:liked' %}">
-                    LIKED EVENTS
-                    <i class="fas fa-heart liked-logo" ></i>
-                </a>
-            </li>
-        	<li class="nav-item">
-                <a class="nav-link" href="{% url 'event:create' %}">
-                    ADD EVENT
-                    <i class="fas fa-plus" ></i>
-                </a>
-            </li>
+            {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'event:liked' %}">
+                        LIKED EVENTS
+                        <i class="fas fa-heart liked-logo" ></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'event:create' %}">
+                        ADD EVENT
+                        <i class="fas fa-plus" ></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user:signout' %}">
+                        LOGOUT
+                    </a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user:signin' %}">
+                        SIGN IN
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user:signup' %}">
+                        SIGN UP
+                    </a>
+                </li>
+            {% endif %}
         </div>
     </div>
 </nav>
